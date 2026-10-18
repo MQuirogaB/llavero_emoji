@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Llavero de emoji · generador de SVG para láser · miguelquiroga.es</title>
+<meta name="description" content="Elige un emoji y descarga un SVG para láser: el emoji grabado en negro y un borde de corte en rojo a su alrededor, con anilla opcional para llavero. Todo en el navegador.">
+<meta name="theme-color" content="#9a6bb4">
+<link rel="stylesheet" href="./style.css?v=1">
+</head>
+<body>
+
+<main class="wrap">
+  <h1>Llavero de emoji</h1>
+  <p class="subtitle">
+    Elige un emoji y descarga un SVG listo para el láser: el emoji se graba en negro y alrededor lleva un borde de corte en rojo,
+    con una anilla opcional para colgarlo como llavero. Todo ocurre en tu navegador: no se sube nada a ningún servidor.
+  </p>
+
+  <div class="layout">
+    <div class="col-controls">
+
+      <div class="card">
+        <p class="card-label">Emoji</p>
+        <div class="emoji-current">
+          <span class="big" id="emoji-big" aria-hidden="true"></span>
+          <input type="text" id="emoji" maxlength="8" autocomplete="off" spellcheck="false" aria-label="Emoji (escríbelo o pégalo)" placeholder="Escribe o pega uno">
+        </div>
+        <div class="cat-tabs" id="cat-tabs" role="tablist" aria-label="Categorías de emojis"></div>
+        <div class="emoji-grid" id="emoji-grid" role="group" aria-label="Emojis"></div>
+        <div class="row"><label for="emojiSize">Tamaño del emoji (mm)</label><input type="number" id="emojiSize" min="5" max="300" step="1"></div>
+        <div class="row"><label for="emojiWeight">Trazo del emoji</label>
+          <select id="emojiWeight"><option value="400">Fino</option><option value="700">Grueso</option></select></div>
+      </div>
+
+      <div class="card">
+        <p class="card-label">Borde de corte</p>
+        <div class="row"><label for="margin">Margen alrededor del emoji (mm)</label><input type="number" id="margin" min="0.5" max="50" step="0.5"></div>
+        <div class="row"><label for="union">Unir partes separadas (mm)</label><input type="number" id="union" min="0" max="20" step="0.5"></div>
+        <p class="note">Si el emoji tiene partes sueltas (orejas, manos…), sube «Unir partes» para que el borde las cierre en una sola pieza.</p>
+      </div>
+
+      <div class="card">
+        <p class="card-label">Llavero</p>
+        <div class="row"><label for="anilla">Anilla</label>
+          <select id="anilla">
+            <option value="none">Sin anilla</option>
+            <option value="top-left">Arriba a la izquierda</option>
+            <option value="top">Arriba</option>
+            <option value="top-right">Arriba a la derecha</option>
+            <option value="left">Izquierda</option>
+            <option value="right">Derecha</option>
+            <option value="bottom">Abajo</option>
+          </select></div>
+        <div class="row"><label for="holeDiameter">Diámetro del agujero (mm)</label><input type="number" id="holeDiameter" min="1" max="30" step="0.5"></div>
+        <div class="row"><label for="wall">Grosor de madera alrededor (mm)</label><input type="number" id="wall" min="1" max="20" step="0.5"></div>
+      </div>
+
+      <div class="card">
+        <p class="card-label">Colores</p>
+        <div class="row"><label for="color">Emoji (grabado)</label><input type="color" id="color"></div>
+        <div class="check"><input type="checkbox" id="cutOther" checked><label for="cutOther">Borde de corte de otro color</label></div>
+        <div class="row" id="cutColorRow"><label for="colorCorte">Borde de corte y agujero</label><input type="color" id="colorCorte"></div>
+        <p class="note">Por defecto, rojo para cortar y negro para grabar. El borde de corte es una línea de 0,1 mm; el emoji es una forma rellena convertida a trazados.</p>
+        <button type="button" class="link" id="reset-btn">Restaurar valores por defecto</button>
+      </div>
+
+      <div class="actions">
+        <button class="btn primary" id="download-btn" type="button" disabled>Descargar SVG</button>
+      </div>
+      <div id="status" role="status">Cargando…</div>
+    </div>
+
+    <div class="col-viewport">
+      <div class="viewport-card">
+        <div id="svg-holder" aria-live="polite"></div>
+        <div id="stats"></div>
+      </div>
+      <div id="avisos" role="status"></div>
+    </div>
+  </div>
+</main>
+
+<footer class="foot">
+  <p>Hecho con ♥ para el aula · <a href="https://miguelquiroga.es">miguelquiroga.es</a></p>
+  <p class="foot-note">Emojis: Noto Emoji (SIL OFL). Bordes calculados con Clipper (Angus Johnson, licencia Boost).</p>
+</footer>
+
+<script type="importmap">
+{
+  "imports": {
+    "opentype.js": "https://cdn.jsdelivr.net/npm/opentype.js@1.3.4/dist/opentype.module.js"
+  }
+}
+</script>
+<script src="./vendor/clipper.js?v=1"></script>
+<script type="module" src="./app.js?v=1"></script>
+</body>
+</html>
