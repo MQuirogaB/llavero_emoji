@@ -6,7 +6,7 @@
 <title>Llavero de emoji · generador de SVG para láser · miguelquiroga.es</title>
 <meta name="description" content="Elige un emoji y descarga un SVG para láser: el emoji grabado en negro y un borde de corte en rojo a su alrededor, con anilla opcional para llavero. Todo en el navegador.">
 <meta name="theme-color" content="#9a6bb4">
-<link rel="stylesheet" href="./style.css?v=1">
+<link rel="stylesheet" href="./style.css?v=2">
 </head>
 <body>
 
@@ -33,15 +33,24 @@
           <select id="emojiWeight"><option value="400">Fino</option><option value="700">Grueso</option></select></div>
       </div>
 
-      <div class="card">
-        <p class="card-label">Borde de corte</p>
+      <details class="card panel">
+        <summary>
+          <span class="card-label">Borde de corte</span>
+          <span class="panel-hint">Margen y unión de partes</span>
+        </summary>
+        <div class="panel-body">
         <div class="row"><label for="margin">Margen alrededor del emoji (mm)</label><input type="number" id="margin" min="0.5" max="50" step="0.5"></div>
         <div class="row"><label for="union">Unir partes separadas (mm)</label><input type="number" id="union" min="0" max="20" step="0.5"></div>
         <p class="note">Si el emoji tiene partes sueltas (orejas, manos…), sube «Unir partes» para que el borde las cierre en una sola pieza.</p>
-      </div>
+        </div>
+      </details>
 
-      <div class="card">
-        <p class="card-label">Llavero</p>
+      <details class="card panel">
+        <summary>
+          <span class="card-label">Llavero</span>
+          <span class="panel-hint">Anilla y agujero</span>
+        </summary>
+        <div class="panel-body">
         <div class="row"><label for="anilla">Anilla</label>
           <select id="anilla">
             <option value="none">Sin anilla</option>
@@ -54,16 +63,22 @@
           </select></div>
         <div class="row"><label for="holeDiameter">Diámetro del agujero (mm)</label><input type="number" id="holeDiameter" min="1" max="30" step="0.5"></div>
         <div class="row"><label for="wall">Grosor de madera alrededor (mm)</label><input type="number" id="wall" min="1" max="20" step="0.5"></div>
-      </div>
+        </div>
+      </details>
 
-      <div class="card">
-        <p class="card-label">Colores</p>
+      <details class="card panel">
+        <summary>
+          <span class="card-label">Colores</span>
+          <span class="panel-hint">Grabado y corte</span>
+        </summary>
+        <div class="panel-body">
         <div class="row"><label for="color">Emoji (grabado)</label><input type="color" id="color"></div>
         <div class="check"><input type="checkbox" id="cutOther" checked><label for="cutOther">Borde de corte de otro color</label></div>
         <div class="row" id="cutColorRow"><label for="colorCorte">Borde de corte y agujero</label><input type="color" id="colorCorte"></div>
         <p class="note">Por defecto, rojo para cortar y negro para grabar. El borde de corte es una línea de 0,1 mm; el emoji es una forma rellena convertida a trazados.</p>
         <button type="button" class="link" id="reset-btn">Restaurar valores por defecto</button>
-      </div>
+        </div>
+      </details>
 
       <div class="actions">
         <button class="btn primary" id="download-btn" type="button" disabled>Descargar SVG</button>
@@ -94,6 +109,6 @@
 }
 </script>
 <script src="./vendor/clipper.js?v=1"></script>
-<script type="module" src="./app.js?v=1"></script>
+<script type="module" src="./app.js?v=2"></script>
 </body>
 </html>
